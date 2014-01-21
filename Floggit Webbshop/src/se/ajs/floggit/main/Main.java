@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 public class Main {
 
 	public static void main(String[] args) throws SQLException {
-//TESTING EGIT
 		Connection connection = null;
 		Statement statement = null;
 		ResultSet resultset = null;
@@ -22,7 +21,7 @@ public class Main {
 			connection.setAutoCommit(false);
 			statement = connection.createStatement();
 			
-			//Method som får ut alla categories
+			//Method som f��r ut alla categories
 			getCategories(connection, statement, resultset);
 
 			connection.commit();
