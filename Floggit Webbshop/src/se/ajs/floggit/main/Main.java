@@ -21,7 +21,7 @@ public class Main {
 			connection.setAutoCommit(false);
 			statement = connection.createStatement();
 			
-			//Method som f��r ut alla categories
+			//The method that gets all the products
 			getCategories(connection, statement, resultset);
 
 			connection.commit();
