@@ -14,7 +14,7 @@ public class Main {
 		Connection connection = null;
 		Statement statement = null;
 		ResultSet resultset = null;
-
+//ljksbfljab
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager.getConnection("jdbc:mysql://localhost/floggit", "root", "");
