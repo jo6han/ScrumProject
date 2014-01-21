@@ -2,27 +2,25 @@ package se.ajs.floggit.main;
 
 import java.lang.Exception;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.PreparedStatement;
 
 public class Main {
 
 	public static void main(String[] args) throws SQLException {
 		Connection connection = null;
-		Statement statement = null;
+		PreparedStatement preparedstatement = null;
 		ResultSet resultset = null;
-//ljksbfljab
+
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager.getConnection("jdbc:mysql://localhost/floggit", "root", "");
 			connection.setAutoCommit(false);
-			statement = connection.createStatement();
-			
-			//The method that gets all the products
-			getCategories(connection, statement, resultset);
+
+			// The method that gets all the products
+			getCategory(connection, preparedstatement, resultset);
 
 			connection.commit();
 
@@ -37,9 +35,9 @@ public class Main {
 
 				}
 			}
-			if (statement != null) {
+			if (preparedstatement != null) {
 				try {
-					statement.close();
+					preparedstatement.close();
 				} catch (SQLException e) {
 
 				}
@@ -51,13 +49,15 @@ public class Main {
 
 				}
 			}
-			
+
 		}
 	}
-	public static void getCategories(Connection connection, Statement statement, ResultSet resultset) throws SQLException{
-		resultset = statement.executeQuery("SELECT * FROM categories_responsible");
 
-		while(resultset.next()){
+	public static void getCategory(Connection connection, PreparedStatement preparedstatement,  ResultSet resultset) throws SQLException {
+		preparedstatement = connection.prepareStatement("SELECT category, staff_responsible FROM categories_responsible");
+		resultset = preparedstatement.executeQuery();
+		
+		while (resultset.next()) {
 			System.out.println("Category: " + resultset.getString("category"));
 			System.out.println("Staff Repsonsible: " + resultset.getString("staff_responsible") + "\n");
 		}
