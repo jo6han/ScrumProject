@@ -8,7 +8,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 
 public class Main {
-
+//daspdkmapsomdpaosmd
 	public static void main(String[] args) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedstatement = null;
