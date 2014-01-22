@@ -18,10 +18,10 @@ public class Main {
 			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager.getConnection("jdbc:mysql://localhost/floggit", "root", "");
 			connection.setAutoCommit(false);
-
-			// The method that gets all the products
-			getCategory(connection, preparedstatement, resultset);
-
+			
+			Category category = new Category();
+			
+			//category.create(connection, preparedstatement, "L3C");
 			connection.commit();
 
 		} catch (Exception e) {
@@ -53,14 +53,14 @@ public class Main {
 		}
 	}
 
-	public static void getCategory(Connection connection, PreparedStatement preparedstatement,  ResultSet resultset) throws SQLException {
-		preparedstatement = connection.prepareStatement("SELECT category, staff_responsible FROM categories_responsible");
-		resultset = preparedstatement.executeQuery();
-		
-		while (resultset.next()) {
-			System.out.println("Category: " + resultset.getString("category"));
-			System.out.println("Staff Repsonsible: " + resultset.getString("staff_responsible") + "\n");
-		}
-	}
+//	public static void getCategory(Connection connection, PreparedStatement preparedstatement,  ResultSet resultset) throws SQLException {
+//		preparedstatement = connection.prepareStatement("SELECT category, staff_responsible FROM categories_responsible");
+//		resultset = preparedstatement.executeQuery();
+//		
+//		while (resultset.next()) {
+//			System.out.println("Category: " + resultset.getString("category"));
+//			System.out.println("Staff Repsonsible: " + resultset.getString("staff_responsible") + "\n");
+//		}
+//	}
 
 }
